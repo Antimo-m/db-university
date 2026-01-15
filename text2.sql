@@ -72,6 +72,9 @@ ON exams.id = exam_student.exam_id
 INNER JOIN courses
 ON courses.id = exams.course_id
 GROUP BY students.id, students.name, students.surname, courses.name
+HAVING MAX(exam_student.vote) >= 18 --andiamo a prendere quelli che sono stati superati almeno una volta
 ORDER BY students.id
+
+
 
 
