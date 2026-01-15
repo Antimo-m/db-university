@@ -25,7 +25,7 @@ WHERE (`period`) =  "I semestre" AND YEAR = 1
 --5.Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 (21)
 SELECT COUNT(*) AS "RISULTATO"
 FROM `exams`
-WHERE date = '2020-06-20' AND `hour` > '14:00:01'
+WHERE date = '2020-06-20' AND `hour` > '14:00:01'--qui oltre che scrivere i minuti e secondi possiamo aggiungere la %
 
 --6.Selezionare tutti i corsi di laurea magistrale (38)
 SELECT COUNT(*) AS "N_CORSI_MAGISTRALI"
@@ -44,20 +44,24 @@ WHERE `phone` IS NULL
 
 
 --BONUS
+
 --1.Contare quanti iscritti ci sono stati ogni anno
 SELECT YEAR(enrolment_date) As "anno", COUNT(*) AS "iscritti"
 FROM `students`
 GROUP BY YEAR(enrolment_date)
 ORDER BY anno
+
 --2.Contare gli insegnanti che hanno l'ufficio nello stesso edificio
 SELECT `office_address`, COUNT(*) AS "numero_insegnanti"
 FROM `teachers`
 GROUP BY `office_address`
 ORDER BY numero_insegnanti DESC
+
 --3.Calcolare la media dei voti di ogni appello d'esame
 SELECT `exam_id`, AVG(`vote`) 
 FROM `exam_student`
 GROUP BY `exam_id`
+
 --4.Contare quanti corsi di laurea ci sono per ogni dipartimento
 SELECT `department_id`, COUNT(*) AS "NUMERO DI CORSI"
 FROM `degrees`
